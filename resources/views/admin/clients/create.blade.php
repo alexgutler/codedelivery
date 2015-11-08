@@ -1,16 +1,13 @@
 @extends('app')
 @section('content')
     <div class="container">
-        <h3>Nova categoria</h3>
-
+        <h3>Novo cliente</h3>
         @include('errors._check')
-
-        {!! Form::open(['route' => 'admin.categories.store', 'method' => 'POST', 'class' => 'form']) !!}
-            @include('admin.categories._form')
+        {!! Form::open(['route' => 'admin.clients.store', 'method' => 'POST', 'class' => 'form']) !!}
+            @include('admin.clients._form')
             <div class="form-group">
-                {!! Form::submit('Criar categoria', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Cadastrar', ['class' => 'btn btn-primary']) !!}
             </div>
         {!! Form::close() !!}
-
     </div>
 @endsection

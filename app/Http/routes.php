@@ -46,4 +46,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.checkrole', 'as' => 'ad
         Route::get('/{id}/edit', ['as' => 'edit', 'uses' => 'ClientsController@edit']);
         Route::post('/update/{id}', ['as' => 'update', 'uses' => 'ClientsController@update']);
     });
+
+    Route::group(['prefix' => 'orders', 'as' => 'orders.'], function(){
+        Route::get('/', ['as' => 'index', 'uses' => 'OrdersController@index']);
+        Route::get('/{id}/edit', ['as' => 'edit', 'uses' => 'OrdersController@edit']);
+        Route::post('/update/{id}', ['as' => 'update', 'uses' => 'OrdersController@update']);
+    });
 });
