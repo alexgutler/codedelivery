@@ -11,10 +11,14 @@ class Order extends Model implements Transformable
     use TransformableTrait;
 
     protected $table = 'orders';
-    protected $fillable = ['client_id', 'user_deliveryman_id', 'total', 'status'];
+    protected $fillable = ['client_id', 'cupom_id', 'user_deliveryman_id', 'total', 'status'];
 
     public function items(){
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function cupom(){
+        return $this->hasOne(Cupom::class, 'cupom_id', 'id');
     }
 
     public function deliveryman(){
