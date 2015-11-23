@@ -77,7 +77,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], funct
         return [
             'id' => '1',
             'client' => 'Alex Gutler',
-            'total' => 10
+            'total' => 20   
         ];
     });
 });
