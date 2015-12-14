@@ -2,14 +2,10 @@
 
 namespace CodeDelivery\Http\Controllers;
 
-use CodeDelivery\Repositories\CategoryRepository;
 use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
 use CodeDelivery\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use CodeDelivery\Http\Requests;
-use CodeDelivery\Http\Controllers\Controller;
-use CodeDelivery\Http\Requests\AdminProductRequest;
 
 class OrdersController extends Controller
 {

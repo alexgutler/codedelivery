@@ -24,11 +24,8 @@ class OrderService
      */
     private $productRepository;
 
-    public function __construct(OrderRepository $orderRepository,
-                                CupomRepository $cupomRepository,
-                                ProductRepository $productRepository)
+    public function __construct(OrderRepository $orderRepository, CupomRepository $cupomRepository, ProductRepository $productRepository)
     {
-
         $this->orderRepository = $orderRepository;
         $this->cupomRepository = $cupomRepository;
         $this->productRepository = $productRepository;

@@ -44,15 +44,19 @@
 @section('post-script')
     <script>
         $('#btnNewItem').click(function(){
-            var row = $('table tbody > tr:last '),
+            var row = $('table tbody > tr:last'),
                     newRow = row.clone(),
                     length = $('table tbody > tr').length;
+
             newRow.find('td').each(function(){
                 var td = $(this),
                         input = td.find('input,select'),
                         name = input.attr('name');
 
-                input.attr('name', name.replace(length - 1) + "", length + "");
+                // seta o atributo name da seguinte forma:
+                // items[0][product_id] - onde o '0' é procurado atraves do ((length - 1) + "")
+                // e substitui por items[1][product_id] onde o '1' é o (length + "") atual
+                input.attr('name', name.replace((length - 1) + "", length + "") );
             });
 
             newRow.find('input').val(1);
@@ -72,12 +76,14 @@
             var total = 0,
                     trLen = $('table tbody tr').length,
                     tr = null, price, qtd;
+
             for(var i = 0; i < trLen; i++){
                 tr = $('table tbody tr').eq(i);
                 price  = tr.find(':selected').data('price');
                 qtd = tr.find('input').val();
                 total += price * qtd;
             }
+
             $('#total').html(total);
         }
     </script>

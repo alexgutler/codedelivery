@@ -73,11 +73,20 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function(){
-    Route::get('teste', function(){
+    Route::get('pedidos', function(){
         return [
             'id' => '1',
             'client' => 'Alex Gutler',
-            'total' => 20   
+            'total' => 20
         ];
     });
+    Route::get('teste', function(){
+        return [
+            'value' => 'Este é um teste.'
+        ];
+    });
+});
+
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
 });
