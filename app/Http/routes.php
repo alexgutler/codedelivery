@@ -73,18 +73,27 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function(){
-    Route::get('pedidos', function(){
-        return [
-            'id' => '1',
-            'client' => 'Alex Gutler',
-            'total' => 20
-        ];
+
+    Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'cliente.'], function(){
+        Route::get('pedidos', function(){
+            return [
+                'id' => '1',
+                'client' => 'Renan Biasuti Client',
+                'total' => 20
+            ];
+        });
     });
-    Route::get('teste', function(){
-        return [
-            'value' => 'Este é um teste.'
-        ];
+
+    Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as' => 'deliveryman.'], function(){
+        Route::get('pedidos', function(){
+            return [
+                'id' => '1',
+                'client' => 'Alex Gutler Entregador',
+                'total' => 20
+            ];
+        });
     });
+
 });
 
 Route::post('oauth/access_token', function() {
