@@ -63,7 +63,10 @@ class OrderService
                 $order->total = $total - $cupom->value;
             }
             $order->save();
+
             DB::commit();
+
+            return $order;
         } catch(\Exception $e) {
             DB::rollback();
             throw $e;

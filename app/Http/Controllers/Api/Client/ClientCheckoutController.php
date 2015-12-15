@@ -9,7 +9,6 @@ use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use CodeDelivery\Http\Requests;
-use Illuminate\Support\Facades\Auth;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class ClientCheckoutController extends Controller
@@ -35,8 +34,7 @@ class ClientCheckoutController extends Controller
                                 UserRepository $userRepository,
                                 ProductRepository $productRepository,
                                 OrderService $orderService
-    )
-    {
+    ){
         $this->orderRepository = $orderRepository;
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
@@ -58,17 +56,27 @@ class ClientCheckoutController extends Controller
     {
         $data = $request->all();
 
-        dd($data);
+        $id = Authorizer::getResourceOwnerId();
 
-        $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
+        $clientId = $this->userRepository->find($id)->client->id;
         $data['client_id'] = $clientId;
-        $this->service->create($data);
-
-        return redirect()->route('customer.order.index');
+        $o = $this->service->create($data);
+        $o = $this->orderRepository->with('items')->find($o->id);
+        return $o;
     }
 
     public function show($id)
     {
-        return ['minha order'];
+        $o = $this->orderRepository->with(['client', 'items', 'cupom'])->find($id);
+        $o->items->each(function($item){
+            $item->product;
+        });
+        return $o;
+    }
+
+    public function authenticated()
+    {
+        $id = Authorizer::getResourceOwnerId();
+        return $this->userRepository->with('client')->find($id);
     }
 }
