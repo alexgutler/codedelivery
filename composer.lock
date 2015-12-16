@@ -456,12 +456,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b44d34056e932898a295e7e58b8c48ce6057324d"
+                "reference": "f2e793778ae8fc0010fff9731a7ad63754da8565"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/f2e793778ae8fc0010fff9731a7ad63754da8565",
-                "reference": "b44d34056e932898a295e7e58b8c48ce6057324d",
+                "reference": "f2e793778ae8fc0010fff9731a7ad63754da8565",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +576,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-12-14 15:23:38"
+            "time": "2015-12-16 14:35:46"
         },
         {
             "name": "league/event",
@@ -634,12 +634,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "0888b18acf3d21197756516cffdc4a70ed9e9eb3"
+                "reference": "c0d00aa92f20c2f2ae43f6c454ce2c8acb079ac7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0888b18acf3d21197756516cffdc4a70ed9e9eb3",
-                "reference": "0888b18acf3d21197756516cffdc4a70ed9e9eb3",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c0d00aa92f20c2f2ae43f6c454ce2c8acb079ac7",
+                "reference": "c0d00aa92f20c2f2ae43f6c454ce2c8acb079ac7",
                 "shasum": ""
             },
             "require": {
@@ -710,7 +710,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-12-12 10:36:24"
+            "time": "2015-12-16 17:34:15"
         },
         {
             "name": "league/fractal",
@@ -912,12 +912,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "cab3ff71ffc802af272928ff71341cfc51e8ee98"
+                "reference": "205f528f5b23e5b9a3e95991d38da2ef9b2db408"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/cab3ff71ffc802af272928ff71341cfc51e8ee98",
-                "reference": "cab3ff71ffc802af272928ff71341cfc51e8ee98",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/205f528f5b23e5b9a3e95991d38da2ef9b2db408",
+                "reference": "205f528f5b23e5b9a3e95991d38da2ef9b2db408",
                 "shasum": ""
             },
             "require": {
@@ -982,7 +982,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-11-26 23:48:42"
+            "time": "2015-12-16 18:41:23"
         },
         {
             "name": "mtdowling/cron-expression",
