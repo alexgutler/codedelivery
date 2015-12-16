@@ -44,7 +44,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
-        $orders = $this->orderRepository->scopeQuery(function($query) use($clientId){
+        $orders = $this->orderRepository->scopeQuery(function($query) use($clientId) {
             return $query->where('client_id', '=', $clientId);
         })->paginate();
 
@@ -57,11 +57,9 @@ class CheckoutController extends Controller
         return view('customer.order.create', compact('products'));
     }
 
-    public function store(Request $request)
+    public function store(Requests\CheckoutRequest $request)
     {
         $data = $request->all();
-
-        dd($data);
 
         $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
         $data['client_id'] = $clientId;
