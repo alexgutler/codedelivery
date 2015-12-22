@@ -12,7 +12,7 @@ use CodeDelivery\Models\Order;
 class OrderTransformer extends TransformerAbstract
 {
     // protected $defaultIncludes = ['cupom', 'items']; // serializa por padrão
-    protected $availableIncludes = ['cupom', 'items', 'client'];  // serializa por demanda
+    protected $availableIncludes = ['cupom', 'items', 'client', 'deliveryman'];  // serializa por demanda
 
     /**
      * Transform the \Order entity
@@ -22,11 +22,10 @@ class OrderTransformer extends TransformerAbstract
      */
     public function transform(Order $model) {
         return [
-            'id'         => (int)$model->id,
-            'total'      => (float)$model->total,
-            /* place your other model properties here */
-            'created_at' => date_format($model->created_at, "d/m/Y"),
-            'updated_at' => date_format($model->updated_at, "d/m/Y"),
+            'id'      => (int)$model->id,
+            'total'   => (float)$model->total,
+            'status'  => (int)$model->status,
+            'created' => date_format($model->created_at, "d-m-Y"),
         ];
     }
 
@@ -36,6 +35,14 @@ class OrderTransformer extends TransformerAbstract
             return null;
         }
         return $this->item($model->client, new ClientTransformer());
+    }
+
+    public function includeDeliveryman(Order $model)
+    {
+        if(!$model->deliveryman){
+            return null;
+        }
+        return $this->item($model->deliveryman, new DeliverymanTransformer());
     }
 
     public function includeCupom(Order $model)

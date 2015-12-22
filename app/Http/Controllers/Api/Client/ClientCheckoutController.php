@@ -25,7 +25,7 @@ class ClientCheckoutController extends Controller
      */
     private $service;
 
-    private $with = ['client', 'cupom', 'items'];
+    private $with = ['client', 'cupom', 'items', 'deliveryman'];
 
     public function __construct(OrderRepository $orderRepository,
                                 UserRepository $userRepository,
@@ -75,11 +75,5 @@ class ClientCheckoutController extends Controller
             ->skipPresenter(false)
             ->with($this->with)
             ->find($id);
-    }
-
-    public function authenticated()
-    {
-        $id = Authorizer::getResourceOwnerId();
-        return $this->userRepository->with('client')->find($id);
     }
 }

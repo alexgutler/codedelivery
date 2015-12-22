@@ -25,7 +25,7 @@ class DeliverymanCheckoutController extends Controller
      */
     private $service;
 
-    private $with = ['client', 'cupom', 'items'];
+    private $with = ['client', 'cupom', 'items', 'deliveryman'];
 
     public function __construct(OrderRepository $orderRepository,
                                 UserRepository $userRepository,
@@ -65,6 +65,6 @@ class DeliverymanCheckoutController extends Controller
         if($order){
             return $this->orderRepository->find($id);
         }
-        abort(400, "Order nao encontrado!");
+        abort(400, "Order não encontrada!");
     }
 }

@@ -11,21 +11,25 @@ use CodeDelivery\Models\OrderItem;
  */
 class OrderItemTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['product']; // serializa por padrão
 
     /**
      * Transform the \OrderItem entity
-     * @param \OrderItem $model
-     *
+     * @param OrderItem $model
      * @return array
      */
     public function transform(OrderItem $model) {
         return [
-            'id'         => (int)$model->id,
-
-            /* place your other model properties here */
-
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'price' => (float)$model->price,
+            'qtd'   => (int)$model->qtd,
         ];
+    }
+
+    public function includeProduct(OrderItem $model)
+    {
+        if(!$model->product){
+            return null;
+        }
+        return $this->item($model->product, new ProductTransformer());
     }
 }

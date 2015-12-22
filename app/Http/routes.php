@@ -86,7 +86,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], funct
             'uses' => 'Api\Deliveryman\DeliverymanCheckoutController@updateStatus']);
     });
 
-    Route::get('authenticated', 'Api\Client\ClientCheckoutController@authenticated');
+    Route::get('authenticated', 'Api\UserController@authenticated');
 });
 
 Route::post('oauth/access_token', function() {
