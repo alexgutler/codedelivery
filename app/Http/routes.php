@@ -72,23 +72,26 @@ Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
 });
 
-Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function(){
+Route::group(['middleware' => 'cors'], function(){
+    Route::group(['prefix' => 'api', 'middleware' => 'oauth', 'as' => 'api.'], function(){
 
-    Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'cliente.'], function(){
-        Route::resource('order', 'Api\Client\ClientCheckoutController', ['except' => ['create', 'edit', 'destroy']]);
+        Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'cliente.'], function(){
+            Route::resource('order', 'Api\Client\ClientCheckoutController', ['except' => ['create', 'edit', 'destroy']]);
+        });
+
+        Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as' => 'deliveryman.'], function(){
+            Route::resource('order', 'Api\Deliveryman\DeliverymanCheckoutController',
+                ['except' => ['create', 'edit', 'destroy', 'store']]);
+            Route::post('order/{id}/update-status', [
+                'as' => 'orders.update_status',
+                'uses' => 'Api\Deliveryman\DeliverymanCheckoutController@updateStatus']);
+        });
+
+        Route::get('authenticated', 'Api\UserController@authenticated');
     });
 
-    Route::group(['prefix' => 'deliveryman', 'middleware' => 'oauth.checkrole:deliveryman', 'as' => 'deliveryman.'], function(){
-        Route::resource('order', 'Api\Deliveryman\DeliverymanCheckoutController',
-            ['except' => ['create', 'edit', 'destroy', 'store']]);
-        Route::post('order/{id}/update-status', [
-            'as' => 'orders.update_status',
-            'uses' => 'Api\Deliveryman\DeliverymanCheckoutController@updateStatus']);
+    Route::post('oauth/access_token', function() {
+        return Response::json(Authorizer::issueAccessToken());
     });
-
-    Route::get('authenticated', 'Api\UserController@authenticated');
 });
 
-Route::post('oauth/access_token', function() {
-    return Response::json(Authorizer::issueAccessToken());
-});

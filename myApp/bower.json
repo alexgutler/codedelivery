@@ -1,8 +1,10 @@
-// Dependências da aplicação
 {
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.1"
+  },
+  "dependencies": {
+    "angular-oauth2": "~3.0.1"
   }
 }

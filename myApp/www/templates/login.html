@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-nav-title> Code Delivery - Login </ion-nav-title>
+    <ion-content class="padding">
+        <form name="form-login" ng-submit="login()" method="post">
+            <div class="list list-inset">
+                <label for="username" class="item item-input">
+                    <input type="text" name="username" id="username"
+                           placeholder="Username" ng-model="user.username" required/>
+                </label>
+            </div>
+            <div class="list list-inset">
+                <label for="password" class="item item-input">
+                    <input type="password" name="password" id="password"
+                           placeholder="Password" ng-model="user.password" required/>
+                </label>
+            </div>
+            <button type="submit" class="button button-full button-assertive">Login</button>
+        </form>
+    </ion-content>
+</ion-view>
