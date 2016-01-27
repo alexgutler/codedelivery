@@ -1,16 +1,13 @@
-angular.module('starter.controllers', [])
+angular.module('HomeCtrl', [])
     .controller('HomeCtrl', [
-        '$scope', 'OAuth', '$state', '$http', '$cookies', function($scope, $http, $cookies) {
-
-            var req = {
+        '$scope', '$http', function($scope, $http) {
+            $http({
                 method: 'GET',
-                url: 'http://localhost:8000/api/authenticated',
-                headers: {
-                    'Authorization': $cookies.getObject('token')
-                }
-            };
-
-            $http(req).then(function(response){
-                $scope.username = response.data.name;
+                url: 'http://localhost:8000/api/authenticated'
+            }).then(function(response){
+                console.log(response);
+                $scope.username = response.data.data.name;
+            }, function(response){
+                console.log("Não foi possível obter o usuário logado. \n" + response);
             });
-    }]);
+        }]);

@@ -1,4 +1,4 @@
-angular.module('starter.controllers',[])
+angular.module('LoginCtrl',[])
     .controller('LoginCtrl', [
         '$scope', 'OAuth', '$ionicPopup', '$state', function($scope, OAuth, $ionicPopup, $state) {
         $scope.user = {
