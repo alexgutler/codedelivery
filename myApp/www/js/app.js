@@ -4,9 +4,8 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', [
-    'ionic', 'LoginCtrl', 'HomeCtrl', 'angular-oauth2'
+        'starter.controllers', 'ionic', 'angular-oauth2'
 ])
-
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -26,12 +25,14 @@ angular.module('starter', [
     })
 
     .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider) {
+
         OAuthProvider.configure({
             baseUrl: 'http://localhost:8000',
             clientId: 'appid01',
             clientSecret: 'secret', // optional
             grantPath: '/oauth/access_token'
         });
+
         OAuthTokenProvider.configure({
             name: 'token',
             options: {
@@ -50,7 +51,6 @@ angular.module('starter', [
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
             });
-
         // redirecionamento padrão
         // $urlRouterProvider.otherwise('/main');
     });

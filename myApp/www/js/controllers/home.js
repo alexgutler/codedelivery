@@ -1,4 +1,4 @@
-angular.module('HomeCtrl', [])
+angular.module('starter.controllers')
     .controller('HomeCtrl', [
         '$scope', '$http', function($scope, $http) {
             $http({
