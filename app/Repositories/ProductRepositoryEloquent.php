@@ -4,8 +4,8 @@ namespace CodeDelivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeDelivery\Repositories\ProductRepository;
 use CodeDelivery\Models\Product;
+use CodeDelivery\Presenters\ProductPresenter;
 
 /**
  * Class ProductRepositoryEloquent
@@ -13,6 +13,8 @@ use CodeDelivery\Models\Product;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {
+    protected $skipPresenter = true;
+
     public function lists()
     {
         return $this->model->get(['id', 'name', 'price']);
@@ -35,4 +37,11 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    public function presenter()
+    {
+        return ProductPresenter::class;
+    }
+
+
 }

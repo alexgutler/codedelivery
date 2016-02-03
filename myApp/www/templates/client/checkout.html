@@ -1,0 +1,13 @@
+<ion-view>
+    <ion-nav-title>Meu Carrinho</ion-nav-title>
+    <ion-content class="padding">
+        <ion-list>
+            <ion-item ng-repeat="p in items">
+                {{p.name}}
+                <span class="item-note">
+                    <i class="ion ion-cash"> {{p.price}}</i>
+                </span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

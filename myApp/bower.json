@@ -5,6 +5,10 @@
     "ionic": "driftyco/ionic-bower#1.2.1"
   },
   "dependencies": {
-    "angular-oauth2": "~3.0.1"
+    "angular-oauth2": "~3.0.1",
+    "angular-resource": "~1.4.9"
+  },
+  "resolutions": {
+    "angular": ">= 1.0.8"
   }
 }
