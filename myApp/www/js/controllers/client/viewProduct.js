@@ -1,10 +1,7 @@
 angular.module('starter.controllers')
     .controller('ClientViewProductCtrl', [
-        '$scope', '$state', 'Product', '$ionicLoading', 'cart', function($scope, $state, Product, $ionicLoading, cart) {
-            window.localStorage['cart'] = JSON.stringify({
-                name: "Ionic",
-                version: "1.0.0"
-            });
+        '$scope', '$state', 'Product', '$ionicLoading', '$cart',
+        function($scope, $state, Product, $ionicLoading, $cart) {
             $scope.products = [];
             $ionicLoading.show({
                 template: 'Loading...'
@@ -16,8 +13,9 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
             });
 
-            $scope.addItem = function(p){
-                cart.items.push(p);
+            $scope.addItem = function(item){
+                item.qtd = 1;
+                $cart.addItem(item);
                 $state.go('client.checkout');
             };
         }]);

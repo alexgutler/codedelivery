@@ -1,12 +1,23 @@
 <ion-view>
     <ion-nav-title>Meu Carrinho</ion-nav-title>
-    <ion-content class="padding">
-        <ion-list>
+    <div class="bar bar-subheader">
+        <h2 class="title">Total: R$ {{total}}</h2>
+        <button class="button button-icon ion-minus-circled" ng-click="showDelete = !showDelete"></button>
+    </div>
+    <ion-content class="padding has-subheader">
+        <ion-list show-delete="showDelete">
             <ion-item ng-repeat="p in items">
-                {{p.name}}
-                <span class="item-note">
-                    <i class="ion ion-cash"> {{p.price}}</i>
-                </span>
+                <h2>{{p.name}}</h2>
+                <div class="row">
+                    <div class="col">
+                        Qtd: {{p.qtd}}<br>
+                        <i class="ion ion-cash"> {{p.price}}</i>
+                    </div>
+                    <div class="col text-right">
+                        <i class="ion ion-social-usd"> {{p.subtotal}}</i>
+                    </div>
+                </div>
+                <ion-delete-button class="ion ion-minus-circled" ng-click="removeItem($index)"></ion-delete-button>
             </ion-item>
         </ion-list>
     </ion-content>

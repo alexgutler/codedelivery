@@ -50,6 +50,10 @@ angular.module('starter', [
         });
 
         $stateProvider
+            //.state('main', {
+            //    url: '/',
+            //    templateUrl: 'templates/login.html'
+            //})
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login.html',
@@ -81,8 +85,5 @@ angular.module('starter', [
                 controller: 'ClientViewProductCtrl'
             });
         // redirecionamento padrão
-        // $urlRouterProvider.otherwise('/main');
-    })
-    .service('cart', function(){
-        this.items = [];
+        //$urlRouterProvider.otherwise('/');
     });
