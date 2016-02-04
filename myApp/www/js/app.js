@@ -70,6 +70,7 @@ angular.module('starter', [
                 template: '<ion-nav-view/>'
             })
             .state('client.checkout', {
+                cache: false,
                 url: '/checkout',
                 templateUrl: 'templates/client/checkout.html',
                 controller: 'ClientCheckoutCtrl'
@@ -78,6 +79,11 @@ angular.module('starter', [
                 url: '/checkout/detail/:index',
                 templateUrl: 'templates/client/checkout_item_detail.html',
                 controller: 'ClientCheckoutDetailCtrl'
+            })
+            .state('client.checkout_successful', {
+                url: '/checkout/successful',
+                templateUrl: 'templates/client/successful.html',
+                controller: 'ClientCheckoutSuccessfulCtrl'
             })
             .state('client.view_products', {
                 url: '/view_products',
