@@ -217,15 +217,15 @@ return [
     |--------------------------------------------------------------------------
     |
     */
-    'generator'=>[
-        'basePath'=>app_path(),
-        'rootNamespace'=>'CodeDelivery\\',
-        'paths'=>[
-            'models'=>'Models',
-            'repositories'=>'Repositories',
-            'interfaces'=>'Repositories',
-            'transformers'=>'Transformers',
-            'presenters'=>'Presenters'
+    'generator' => [
+        'basePath' => app_path(),
+        'rootNamespace' => 'CodeDelivery\\',
+        'paths' => [
+            'models' => 'Models',
+            'repositories' => 'Repositories',
+            'interfaces' => 'Repositories',
+            'transformers' => 'Transformers',
+            'presenters' => 'Presenters'
         ]
     ]
 ];
