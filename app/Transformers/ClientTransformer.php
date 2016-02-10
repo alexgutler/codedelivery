@@ -11,7 +11,6 @@ use CodeDelivery\Models\Client;
  */
 class ClientTransformer extends TransformerAbstract
 {
-
     /**
      * Transform the \Client entity
      * @param Client $model
@@ -20,9 +19,6 @@ class ClientTransformer extends TransformerAbstract
      */
     public function transform(Client $model) {
         return [
-            'id'      => (int)$model->id,
-            'name'    => $model->user->name,
-            'email'   => $model->user->email,
             'phone'   => $model->phone,
             'address' => $model->address,
             'zipcode' => $model->zipcode,

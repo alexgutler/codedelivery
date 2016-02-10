@@ -9,9 +9,11 @@
 // configuração para poder separar os controllers em arquivos distintos
 angular.module('starter.controllers', []);
 angular.module('starter.services', []); // services e factories
+angular.module('starter.filters', []);
 
 angular.module('starter', [
-    'ionic', 'starter.controllers', 'starter.services', 'angular-oauth2', 'ngResource', 'ngCordova'
+    'ionic', 'starter.controllers', 'starter.services', 'starter.filters',
+    'angular-oauth2', 'ngResource', 'ngCordova'
 ])
     .constant('appConfig', {
         baseUrl: 'http://192.168.0.114:8000'
@@ -52,10 +54,6 @@ angular.module('starter', [
         });
 
         $stateProvider
-            //.state('main', {
-            //    url: '/',
-            //    templateUrl: 'templates/login.html'
-            //})
             .state('login', {
                 url: '/login',
                 templateUrl: 'templates/login.html',
@@ -66,10 +64,26 @@ angular.module('starter', [
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
             })
+            //.state('client', {
+            //    abstract: true,
+            //    url: '/client',
+            //    template: '<ion-nav-view/>'
+            //})
             .state('client', {
                 abstract: true,
                 url: '/client',
-                template: '<ion-nav-view/>'
+                templateUrl: 'templates/client/menu.html',
+                controller: 'ClientMenuCtrl'
+            })
+            .state('client.order', {
+                url: '/order',
+                templateUrl: 'templates/client/order.html',
+                controller: 'ClientOrderCtrl'
+            })
+            .state('client.view_order', {
+                url: '/view_order/:id',
+                templateUrl: 'templates/client/view_order.html',
+                controller: 'ClientViewOrderCtrl'
             })
             .state('client.checkout', {
                 cache: false,

@@ -21,8 +21,8 @@ class UserController extends Controller
     {
         $id = Authorizer::getResourceOwnerId();
         return $this->userRepository
-            ->skipPresenter(false)
             ->with($this->with)
+            ->skipPresenter(false)
             ->find($id);
     }
 }
