@@ -24,12 +24,32 @@ class OrderTransformer extends TransformerAbstract
         return [
             'id'      => (int)$model->id,
             'total'   => (float)$model->total,
-            'status'  => (int)$model->status,
+            'status'  => $this->getStatusName((int)$model->status),
             'product_names' => $this->getArrayProductNames($model->items),
 //            'created_at' => date_format($model->created_at, "d-m-Y"),
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];
+    }
+
+    protected function getStatusName($status)
+    {
+        switch($status){
+            case 0:
+                return 'Pendente';
+                break;
+            case 1:
+                return 'A caminho';
+                break;
+            case 2:
+                return 'Entregue';
+                break;
+            case 3:
+                return 'Cancelado';
+                break;
+            default:
+                return null;
+        }
     }
 
     protected function getArrayProductNames(Collection $items)
