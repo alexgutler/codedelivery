@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+/.idea
+/myApp/plugins
+/myApp/platforms
+/myApp/www/js/app-examples.js
