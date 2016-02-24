@@ -1,7 +1,8 @@
 angular.module('starter.controllers')
     .controller('ClientCheckoutCtrl', [
-        '$scope', '$state', '$cart', 'Order', '$ionicLoading', '$ionicPopup', 'Cupom', '$cordovaBarcodeScanner', 'User',
-        function($scope, $state, $cart, Order, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner, User) {
+        '$scope', '$state', '$cart', 'Order', '$ionicLoading', '$ionicPopup', 'Cupom',
+        '$cordovaBarcodeScanner', 'User', '$q',
+        function($scope, $state, $cart, Order, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner, User, $q) {
             User.authenticated({include: 'client'}, function(data){
                 console.log(data.data);
             }, function(responseError){
@@ -27,46 +28,59 @@ angular.module('starter.controllers')
                 $state.go("client.view_products");
             };
 
-            $scope.save = function(){
-                $ionicLoading.show({
-                    template:"Finalizando pedido..."
-                });
+            $scope.save = function() {
 
-                var o ={items: angular.copy($scope.items)};
+                var promise = validateOrderValue();
 
-                angular.forEach(o.items, function(item){
-                    item.product_id = item.id;
-                });
+                promise.then(function() {
+                    $ionicLoading.show({
+                        template:"Finalizando pedido..."
+                    });
 
-                if($scope.cupom.value){
-                    o.cupom_code = $scope.cupom.code;
-                }
+                    var o ={items: angular.copy($scope.items)};
 
-                Order.save({id: null}, o, function(data){
-                    $ionicLoading.hide();
-                    $state.go("client.checkout_successful");
-                }, function(responseError){
-                    $ionicLoading.hide();
+                    angular.forEach(o.items, function(item){
+                        item.product_id = item.id;
+                    });
+
+                    if($scope.cupom.value){
+                        o.cupom_code = $scope.cupom.code;
+                    }
+
+                    Order.save({id: null}, o, function(data){
+                        $ionicLoading.hide();
+                        $state.go("client.checkout_successful");
+                    }, function(responseError){
+                        $ionicLoading.hide();
+                        $ionicPopup.alert({
+                            title: 'Advertência',
+                            template: 'Erro ao finalizar o pedido. Tente novamente.'
+                        });
+                    });
+                }, function() {
                     $ionicPopup.alert({
                         title: 'Advertência',
-                        template: 'Erro ao finalizar o pedido. Tente novamente.'
+                        template: 'Valor do pedido inválido. É necessário adicionar mais produtos.'
                     });
+                    // return false;
                 });
+
             };
 
             $scope.readBarCode = function(){
-                $cordovaBarcodeScanner
-                    .scan()
-                    .then(function(barcodeData) {
-                        // Success! Barcode data is here
-                        getValueCupom(barcodeData.text);
-                    }, function(error) {
-                        // An error occurred
-                        $ionicPopup.alert({
-                            title: 'Advertência',
-                            template: 'Não foi possível ler o código de barras - Tente novamente.'
-                        });
-                    });
+                getValueCupom('752');
+                //$cordovaBarcodeScanner
+                //    .scan()
+                //    .then(function(barcodeData) {
+                //        // Success! Barcode data is here
+                //        getValueCupom(barcodeData.text);
+                //    }, function(error) {
+                //        // An error occurred
+                //        $ionicPopup.alert({
+                //            title: 'Advertência',
+                //            template: 'Não foi possível ler o código de barras - Tente novamente.'
+                //        });
+                //    });
             };
 
             $scope.removeCupom = function(){
@@ -92,6 +106,16 @@ angular.module('starter.controllers')
                         template: 'Cupom inválido.'
                     });
                 });
+            }
+
+            function validateOrderValue() {
+                return $q(function(resolve, reject){
+                    if($cart.getTotalFinal() > 0){
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                })
             }
 
         }]);
