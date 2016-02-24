@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('DeliverymanViewOrderCtrl', [
-        '$scope', '$stateParams', 'Order', '$ionicLoading',
-        function($scope, $stateParams, Order, $ionicLoading) {
+        '$scope', '$stateParams', 'ClientOrder', '$ionicLoading',
+        function($scope, $stateParams, ClientOrder, $ionicLoading) {
             $scope.order = {};
 
             $ionicLoading.show({

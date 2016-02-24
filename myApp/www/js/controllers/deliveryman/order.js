@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('DeliverymanOrderCtrl', [
-        '$scope', '$state', 'Order', '$ionicLoading',
-        function($scope, $state, Order, $ionicLoading) {
+        '$scope', '$state', 'DeliverymanOrder', '$ionicLoading',
+        function($scope, $state, DeliverymanOrder, $ionicLoading) {
             $scope.items = [];
 
             $ionicLoading.show({
@@ -19,11 +19,11 @@ angular.module('starter.controllers')
             };
 
             $scope.openOrderDetail = function(order){
-                $state.go("client.view_order", {id: order.id});
+                $state.go("deliveryman.view_order", {id: order.id});
             };
 
             function getOrders(){
-                return Order.query({
+                return DeliverymanOrder.query({
                     id: null,
                     orderBy: 'created_at',
                     sortedBy: 'desc'

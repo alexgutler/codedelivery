@@ -71,6 +71,7 @@ angular.module('starter', [
             //})
             .state('client', {
                 abstract: true,
+                cache: false,
                 url: '/client',
                 templateUrl: 'templates/client/menu.html',
                 controller: 'ClientMenuCtrl'
@@ -109,6 +110,7 @@ angular.module('starter', [
             })
             .state('deliveryman', {
                 abstract: true,
+                cache: false,
                 url: '/deliveryman',
                 templateUrl: 'templates/deliveryman/menu.html',
                 controller: 'DeliverymanMenuCtrl'
