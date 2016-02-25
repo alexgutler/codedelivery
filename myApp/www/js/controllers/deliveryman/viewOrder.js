@@ -1,14 +1,14 @@
 angular.module('starter.controllers')
     .controller('DeliverymanViewOrderCtrl', [
-        '$scope', '$stateParams', 'ClientOrder', '$ionicLoading',
-        function($scope, $stateParams, ClientOrder, $ionicLoading) {
+        '$scope', '$stateParams', 'DeliverymanOrder', '$ionicLoading',
+        function($scope, $stateParams, DeliverymanOrder, $ionicLoading) {
             $scope.order = {};
 
             $ionicLoading.show({
                 template: 'Loading...'
             });
 
-            Order.query({
+            DeliverymanOrder.query({
                 id: $stateParams.id,
                 include: 'items,cupom'
             }, function(data){

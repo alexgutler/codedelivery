@@ -16,7 +16,7 @@ angular.module('starter', [
     'angular-oauth2', 'ngResource', 'ngCordova'
 ])
     .constant('appConfig', {
-        baseUrl: 'http://192.168.4.234:8000'
+        baseUrl: 'http://192.168.0.114:8000'
     })
 
     .run(function ($ionicPlatform) {

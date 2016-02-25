@@ -11,7 +11,7 @@ class Order extends Model implements Transformable
     use TransformableTrait;
 
     protected $table = 'orders';
-    protected $fillable = ['client_id', 'cupom_id', 'user_deliveryman_id', 'total', 'status'];
+    protected $fillable = ['client_id', 'cupom_id', 'user_deliveryman_id', 'total', 'status', 'hash'];
 
     // definir a serialização do retorno
     public function transform() {

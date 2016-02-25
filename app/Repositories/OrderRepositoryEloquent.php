@@ -19,30 +19,16 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 
     public function getByIdAndDeliveryman($id, $idDeliveryman)
     {
-        $result = $this->with(['client', 'items', 'cupom'])->findWhere([
-            'id' => $id, 'user_deliveryman_id' => $idDeliveryman
-        ]);
+        $result = $this->model
+                        ->where('id', $id)
+                        ->where('user_deliveryman_id', $idDeliveryman)
+                        ->first();
 
-        // se não for instancia da Collection vai ser um array (não pode ser um array)
-        if ($result instanceof Collection){
-            $result = $result->first();
-        } else {
-            if(isset($result['data']) && count($result['data']) == 1){
-                $result = [
-                    'data' => $result['data'][0]
-                ];
-            } else {
-                throw new ModelNotFoundException("Order não existe.");
-            }
+        if($result) {
+            return $this->parserResult($result);
         }
 
-//        if($result) {
-//            $result->items->each(function($item){
-//                $item->product;
-//            });
-//        }
-
-        return $result;
+        throw (new ModelNotFoundException())->setModel(get_class($this->model));
     }
 
     /**
