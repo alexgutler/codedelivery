@@ -23,7 +23,7 @@ angular.module('starter.controllers')
             };
 
             function getOrders(){
-                return Order.query({
+                return ClientOrder.query({
                     id: null,
                     orderBy: 'created_at',
                     sortedBy: 'desc'
