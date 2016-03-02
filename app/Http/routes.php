@@ -100,4 +100,3 @@ Route::group(['middleware' => 'cors'], function(){
         return Response::json(Authorizer::issueAccessToken());
     });
 });
-

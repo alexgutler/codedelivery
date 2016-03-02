@@ -2,7 +2,6 @@
 
 namespace CodeDelivery\Events;
 
-use CodeDelivery\Events\Event;
 use CodeDelivery\Models\Geo;
 use CodeDelivery\Models\Order;
 use Illuminate\Queue\SerializesModels;
