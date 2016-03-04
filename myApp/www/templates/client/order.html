@@ -11,7 +11,7 @@
                     <div class="col">
                         <h2>{{o.created_at.date | limitTo: 10 | date: 'dd/MM/yyyy'}}</h2>
                         <p>{{o.product_names | limitTo: 2 | join: ', '}}</p>
-                        <p>Status: {{o.status}}</p>
+                        <p>Status: {{o.status_name}}</p>
                     </div>
                     <div class="col text-right">
                         <i class="ion ion-social-usd"> {{o.total}}</i><br>
