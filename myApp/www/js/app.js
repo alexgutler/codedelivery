@@ -16,7 +16,7 @@ angular.module('starter', [
     'angular-oauth2', 'ngResource', 'ngCordova', 'uiGmapgoogle-maps', 'pusher-angular'
 ])
     .constant('appConfig', {
-        baseUrl: 'http://192.168.4.234:8000',
+        baseUrl: 'http://192.168.0.114:8000',
         pusherKey: '86733069a71c80299508'
     })
 

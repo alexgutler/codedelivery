@@ -3,7 +3,7 @@ angular.module('starter.controllers')
         '$scope', '$stateParams', 'DeliverymanOrder', '$ionicLoading', '$cordovaGeolocation',
         '$ionicPopup',
         function($scope, $stateParams, DeliverymanOrder, $ionicLoading, $cordovaGeolocation, $ionicPopup) {
-            var watch;
+            var watch, lat = null, long = null;
             $scope.order = {};
 
             $ionicLoading.show({
@@ -41,10 +41,16 @@ angular.module('starter.controllers')
                     watch.then(null,
                         function(responseError){
                             // error
-                        }, function(position){
+                        }, function(position) {
+                            if(!lat) {
+                                lat = position.coords.latitude;
+                                long = position.coords.longitude;
+                            } else {
+                                long -= 0.0444;
+                            }
                             DeliverymanOrder.geo({id: $stateParams.id}, {
-                                lat: position.coords.latitude,
-                                long: position.coords.longitude
+                                lat: lat,
+                                long: long
                             });
                         });
                 });
