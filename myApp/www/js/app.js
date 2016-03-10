@@ -12,7 +12,7 @@ angular.module('starter.services', []); // services e factories
 angular.module('starter.filters', []);
 
 angular.module('starter', [
-    'ionic', 'starter.controllers', 'starter.services', 'starter.filters',
+    'ionic','ionic.service.core', 'starter.controllers', 'starter.services', 'starter.filters',
     'angular-oauth2', 'ngResource', 'ngCordova', 'uiGmapgoogle-maps', 'pusher-angular'
 ])
     .constant('appConfig', {
