@@ -37,6 +37,16 @@ angular.module('starter', [
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
+            Ionic.io();
+            var push = new Ionic.Push({
+                debug: true,
+                onNotification: function(message){
+                    console.log(message);
+                }
+            });
+            push.register(function(token){
+
+            });
         });
     })
 
